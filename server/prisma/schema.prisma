@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Attendance {
+  id         String   @id @default(uuid())
+  userId     String   
+  user       User     @relation(fields: [userId], references: [id])
+  status     String
+  timestamp  DateTime @default(now())
+  faceData   String?
+  confidence Float?
+  location   Json?
+  deviceId   String
+}
+
+model User {
+  id         String       @id @default(uuid())  
+  fullName   String
+  email      String       @unique
+  role       Role
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  attendances Attendance[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
