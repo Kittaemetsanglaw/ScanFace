@@ -1,27 +1,39 @@
 import React from 'react';
-import Navbar from './components/Layout/Navbar/Navbar';
-import Topbar from './components/Layout/TopBar/Topbar';
-import Dashboard from './components/DashBoard/DashBoard';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Page/DashBoard/DashBoard';
+import HomeScreen from "./components/Page/HomeScreen";
+import LoginPage from "./components/Page/LoginPage";
+import CourseDetails from "./components/Page/CourseDetails";
+import ProtectedRoute from "./components/Page/ProtectedRoute"
+import AttendanceList from './components/Page/AttendanceList';
 
 
-function App() {
+const App = () => {
   return (
-
-    <div className="flex">
-      {/* Navbar ด้านซ้าย */}
-      <Navbar />
-
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Topbar ด้านบน */}
-        <Topbar />
+    <BrowserRouter>
+      <Routes>
+        {/* เปลี่ยนหน้าแรกเป็น Home */}
+        <Route path="/" element={<HomeScreen />} />
         
-        {/* Dashboard Content */}
-        <Dashboard />
-      </div>
-    </div>
-   
+        {/* เพิ่มเส้นทางสำหรับ Login */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* เส้นทางที่ต้องล็อกอินก่อนเข้า */}
+        <Route path="/courses" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/attendance" element={
+          <ProtectedRoute>
+            <AttendanceList />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
+
 
 export default App;
