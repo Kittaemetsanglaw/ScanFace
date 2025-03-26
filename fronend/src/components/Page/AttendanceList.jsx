@@ -5,10 +5,7 @@ const AttendanceList = () => {
   const navigate = useNavigate();
   const [students] = useState([
     { id: '65000001', name: 'นาย ณัฐวุฒิ สังขกุล', present: false, absent: false, late: false },
-    { id: '65000002', name: 'นาย ธนภัทร ศิริเทพ', present: false, absent: false, late: false },
-    { id: '65000003', name: 'นาย สราวุฒิ เพ็ชรพรหมมาสตร์', present: false, absent: false, late: false },
-    { id: '65000004', name: 'นาย ชญานนท์ ตัณธนสุข', present: false, absent: false, late: false },
-    { id: '65000005', name: 'นาย กฤตเมธ สังข์ลาว', present: false, absent: false, late: false },
+
   ]);
 
   const handleLogout = () => {
@@ -37,53 +34,46 @@ const AttendanceList = () => {
               <div className="w-8 h-5 bg-white absolute top-6 rounded-t-full "></div>
             </div>
           </div>
-          <h3 className="text-xl">อาจารย์สุรชัย ทองแก้ว</h3> 
+          <h3 className="text-xl">นาย กฤตเมธ สังข์ลาว</h3> 
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr>
-                <th className="border p-2 text-left">รหัสนักศึกษา</th>
-                <th className="border p-2 text-left">ชื่อ - นามสกุล</th>
-                <th className="border p-2 text-center">เข้าเรียน</th>
-                <th className="border p-2 text-center">ขาดเรียน</th>
-                <th className="border p-2 text-center">มาสาย</th>
+            <tr>
+                <th className="border p-4 text-center">ลำดับ</th>
+                <th className="border p-4 text-left">รหัสวิชา</th>
+                <th className="border p-4 text-left">ชื่อวิชา</th>
+                <th className="border p-4 text-center">ทฤษฎี</th>
+                <th className="border p-4 text-center">ปฏิบัติ</th>
               </tr>
             </thead>
             <tbody>
-              {students.map(student => (
+            {students.map((student, index) => (
                 <tr key={student.id}>
-                  <td className="border p-2">{student.id}</td>
-                  <td className="border p-2">{student.name}</td>
-                  <td className="border p-2 text-center">
-                    <div className="flex justify-center">
-                      <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
-                    </div>
+                  <td className="border p-4 text-center">{index + 1}</td>
+                  <td className="border p-4">{student.id}</td>
+                  <td className="border p-4">{student.name}</td>
+                  <td className="border p-4 text-center">
+                    <button 
+                      className="text-blue-500 underline"
+                      onClick={() => navigate('/studentlist')}
+                    >
+                      001
+                    </button>
                   </td>
-                  <td className="border p-2 text-center">
-                    <div className="flex justify-center">
-                      <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
-                    </div>
-                  </td>
-                  <td className="border p-2 text-center">
-                    <div className="flex justify-center">
-                      <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
-                    </div>
+                  <td className="border p-4 text-center">
+                    <button 
+                      className="text-blue-500 underline"
+                      onClick={() => navigate('/studentslist')}
+                    >
+                      001
+                    </button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="flex justify-end mt-6">
-          <button 
-            className="bg-green-500 text-white px-6 py-3 rounded-md"
-            onClick={() => navigate('/courses')}
-          >
-            เสร็จสิ้น
-          </button>
         </div>
       </div>
     </div>

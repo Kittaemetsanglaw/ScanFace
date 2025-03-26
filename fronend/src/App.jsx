@@ -6,7 +6,7 @@ import LoginPage from "./components/Page/LoginPage";
 import CourseDetails from "./components/Page/CourseDetails";
 import ProtectedRoute from "./components/Page/ProtectedRoute"
 import AttendanceList from './components/Page/AttendanceList';
-
+import StudentsList from "./components/Page/StudentsList"
 
 const App = () => {
   return (
@@ -30,6 +30,14 @@ const App = () => {
             <AttendanceList />
           </ProtectedRoute>
         } />
+        
+      <Route path="/studentslist" element={
+        <ProtectedRoute>
+          <StudentsList />
+        </ProtectedRoute>
+      }/>
+        
+
       </Routes>
     </BrowserRouter>
   );

@@ -7,7 +7,7 @@ const Navbar = () => {
         <span className="icon">💻</span>
         <span className="text-xl font-bold">CPE-495</span>
       </div>
-      <ul className="space-y-4">
+      <ul className="space-y-6">
         <li><a href="#dashboard" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">📊</span><i className="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
         <li><a href="#notification" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">🔔 </span><i className="fas fa-notification-alt"></i><span>Notification</span></a></li>
         <li><a href="#log" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">📄</span><i className="fas fa-calendar-alt"></i><span>Log</span></a></li>

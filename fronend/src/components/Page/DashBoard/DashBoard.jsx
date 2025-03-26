@@ -88,13 +88,13 @@ const Dashboard = () => {
           {/* กล่องแสดงระบบ */}
           <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-300 col-span-1 flex flex-col gap-4">
             <h2 className="font-bold text-lg mb-2">🔹 ระบบ</h2>
-            <div className="bg-gray-100 p-3 rounded-lg shadow-inner">
+            <div className="bg-gray-100 p-3 rounded-lg ">
               <p className="font-bold">{isConnected ? "✅ Connected" : "❌ Disconnected"}</p>
               <p>✅ เช็คชื่อแล้ว: <b>{checkedInCount}</b> คน</p>
               <p>❌ ยังไม่ได้เช็คชื่อ: <b>{notCheckedInCount}</b> คน</p>
             </div>
 
-            <div className="bg-gray-100 p-3 rounded-lg shadow-inner">
+            <div className="bg-gray-100 p-3 rounded-lg ">
               <h3 className="font-bold">🛠 ฟังก์ชันเพิ่มเติม</h3>
               <button
                 onClick={fetchStudents}
