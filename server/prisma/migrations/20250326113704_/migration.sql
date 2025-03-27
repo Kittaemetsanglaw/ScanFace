@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE `course_detail` ADD COLUMN `End_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00',
+    ADD COLUMN `Start_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00';
+
+-- AlterTable
+ALTER TABLE `student` MODIFY `Student_ID` INTEGER NOT NULL;
+
+-- AlterTable
+ALTER TABLE `student_check` ADD COLUMN `Check_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00';

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
   const [isConnected, setIsConnected] = useState(true);
-  const apiUrl = "http://localhost:5000/api/students"; // API สำหรับดึงข้อมูลนักศึกษา
+  const apiUrl = "http://localhost:5000/api/student-checks"; // เปลี่ยนเป็น API ที่ต้องการ
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -21,14 +21,10 @@ const Dashboard = () => {
   }, []);
 
   // นับจำนวนที่เช็คชื่อแล้ว
-  const checkedInCount = students.filter(student =>
-    student.attendances.some(attendance => attendance.status === "present")
-  ).length;
+  const checkedInCount = students.filter(student => student.Check_Status === "Present").length;
 
   // นับจำนวนที่ยังไม่เช็คชื่อ
-  const notCheckedInCount = students.filter(student =>
-    student.attendances.every(attendance => attendance.status !== "present")
-  ).length;
+  const notCheckedInCount = students.filter(student => student.Check_Status !== "Present").length;
 
   return (
     <div className="flex-1 bg-white text-black p-4 grid grid-cols-4 gap-4 min-h-screen">
@@ -48,14 +44,14 @@ const Dashboard = () => {
           </thead>
           <tbody>
             {students.map((student) => (
-              <tr key={student.id} className="text-center">
-                <td className="border border-gray-300 px-4 py-2">{student.attendances[0]?.status}</td>
-                <td className="border border-gray-300 px-4 py-2">{student.id}</td>
-                <td className="border border-gray-300 px-4 py-2">{student.fullName}</td>
-                <td className="border border-gray-300 px-4 py-2">{student.attendances[0]?.timestamp}</td>
-                <td className="border border-gray-300 px-4 py-2">{student.attendances[0]?.timestamp}</td>
-                <td className={`border border-gray-300 px-4 py-2 ${student.attendances[0]?.status === "present" ? "text-green-500" : "text-red-500"}`}>
-                  {student.attendances[0]?.status === "present" ? "✅ YES" : "❌ NO"}
+              <tr key={student.Student_ID} className="text-center">
+                <td className="border border-gray-300 px-4 py-2">{student.Course_ID}</td>
+                <td className="border border-gray-300 px-4 py-2">{student.Student_ID}</td>
+                <td className="border border-gray-300 px-4 py-2">{student.student.Student_Name}</td>
+                <td className="border border-gray-300 px-4 py-2">{student.Check_Date}</td>
+                <td className="border border-gray-300 px-4 py-2">{student.Check_Time}</td>
+                <td className={`border border-gray-300 px-4 py-2 ${student.Check_Status === "Present" ? "text-green-500" : "text-red-500"}`}>
+                  {student.Check_Status === "Present" ? "✅ YES" : "❌ NO"}
                 </td>
               </tr>
             ))}

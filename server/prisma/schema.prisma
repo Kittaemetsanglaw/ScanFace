@@ -7,30 +7,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Attendance {
-  id         String   @id @default(uuid())
-  userId     String   
-  user       User     @relation(fields: [userId], references: [id])
-  status     String
-  timestamp  DateTime @default(now())
-  faceData   String?
-  confidence Float?
-  location   Json?
-  deviceId   String
+model Teacher {
+  Teach_ID   Int     @id @default(autoincrement())
+  Teach_Name String
+  Teach_User String  @unique
+  Teach_Pass String
+  courses    Course_Detail[]
 }
 
-model User {
-  id         String       @id @default(uuid())  
-  fullName   String
-  email      String       @unique
-  role       Role
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-
-  attendances Attendance[]
+model Course_Detail {
+  Course_ID   String  @id
+  Course_Name String
+  Teach_ID    Int
+  Start_Time  String  @default("00:00:00")  // ✅ ใส่ default value
+  End_Time    String  @default("00:00:00")  // ✅ ใส่ default value
+  teacher     Teacher @relation(fields: [Teach_ID], references: [Teach_ID])
+  classrooms  ClassRoom[]
+  studentChecks Student_Check[]
 }
 
-enum Role {
-  USER
-  ADMIN
+model Student {
+  Student_ID       Int     @id  // เอา @default(autoincrement()) ออก
+  Student_Name     String
+  Student_Email    String
+  Student_Username String
+  Student_Password String
+  classrooms       ClassRoom[]
+  studentChecks    Student_Check[]
+}
+
+model ClassRoom {
+  Class_no   Int      @id @default(autoincrement())
+  Course_ID  String
+  Student_ID Int
+  Check_Status String
+  Class_Date  DateTime
+  Class_Time  DateTime
+  course      Course_Detail @relation(fields: [Course_ID], references: [Course_ID])
+  student     Student       @relation(fields: [Student_ID], references: [Student_ID])
+}
+
+model Student_Check {
+  Check_no    Int      @id @default(autoincrement())
+  Course_ID   String
+  Check_Date  DateTime
+  Check_Time  String  @default("00:00:00") // ✅ ใส่ default value
+  Student_ID  Int
+  Check_Status String
+  course      Course_Detail @relation(fields: [Course_ID], references: [Course_ID])
+  student     Student       @relation(fields: [Student_ID], references: [Student_ID])
 }

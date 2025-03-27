@@ -1,8 +1,12 @@
-const express = require('express');
+// studentRoutes.js
+const express = require("express");
 const router = express.Router();
-const { getAllStudents } = require('../controllers/studentControler');
+const studentController = require("../controllers/studentController");
 
-// 📌 เส้นทางสำหรับดึงรายชื่อนักศึกษา
-router.get('/students', getAllStudents);
+// Create Student
+router.post("/students", studentController.createStudent);
+
+// Get All Students
+router.get("/students", studentController.getAllStudents);
 
 module.exports = router;
