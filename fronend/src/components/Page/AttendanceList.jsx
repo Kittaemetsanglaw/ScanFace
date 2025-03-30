@@ -57,7 +57,7 @@ const AttendanceList = () => {
                   <td className="border p-4 text-center">
                     <button 
                       className="text-blue-500 underline"
-                      onClick={() => navigate('/studentlist')}
+                      onClick={() => navigate('/studentslist')}
                     >
                       001
                     </button>
