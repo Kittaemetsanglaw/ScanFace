@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const AttendancePage = () => {
+  const navigate = useNavigate();
   const [attendanceData, setAttendanceData] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState("640510001");
 
@@ -39,12 +42,12 @@ const AttendancePage = () => {
           <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center mr-4">
             <span className="text-lg">👤</span>
           </div>
-          <label className="font-bold text-lg">นางสาวอาไก่ ขอไม่</label>
+          <label className="font-bold text-lg text-black">นายกฤตเมธ สังข์ลาว</label>
         </div>
 
         {/* Attendance Table */}
         <table className="w-full border text-center">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 text-black">
             <tr>
               <th className="border px-3 py-2">ครั้งที่</th>
               <th className="border px-3 py-2">วันที่</th>
@@ -117,7 +120,9 @@ const AttendancePage = () => {
 
         {/* Done Button */}
         <div className="text-right mt-4">
-          <button className="bg-green-500 text-white px-4 py-1 rounded">
+          <button className="bg-green-500 text-white px-4 py-1 rounded "
+           onClick={() => navigate('/attendance')}
+          >
             เสร็จสิ้น
           </button>
         </div>

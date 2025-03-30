@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const AttendanceList = () => {
   const navigate = useNavigate();
   const [students] = useState([
-    { id: '65000001', name: 'นาย ณัฐวุฒิ สังขกุล', present: false, absent: false, late: false },
+    { id: 'CPE495', name: 'หัวข้อพิเศษในด้านวิศวกรรมคอมพิวเตอร์ 1', present: false, absent: false, late: false },
 
   ]);
 
@@ -14,7 +14,7 @@ const AttendanceList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-black">
       <header className="bg-[#131B62] p-4 flex justify-between items-center">
         <div></div>
         <button 

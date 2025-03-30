@@ -7,6 +7,7 @@ import CourseDetails from "./components/Page/CourseDetails";
 import ProtectedRoute from "./components/Page/ProtectedRoute"
 import AttendanceList from './components/Page/AttendanceList';
 import StudentsList from "./components/Page/StudentsList"
+import ArticlesPage from './components/Page/ArticlesPage/ArticlesPage';
 
 const App = () => {
   return (
@@ -14,7 +15,7 @@ const App = () => {
       <Routes>
         {/* เปลี่ยนหน้าแรกเป็น Home */}
         <Route path="/" element={<HomeScreen />} />
-        
+
         {/* เพิ่มเส้นทางสำหรับ Login */}
         <Route path="/login" element={<LoginPage />} />
 
@@ -30,13 +31,19 @@ const App = () => {
             <AttendanceList />
           </ProtectedRoute>
         } />
-        
-      <Route path="/studentslist" element={
-        <ProtectedRoute>
-          <StudentsList />
-        </ProtectedRoute>
-      }/>
-        
+
+        <Route path="/studentslist" element={
+          <ProtectedRoute>
+            <StudentsList />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/articlespage" element={
+          <ProtectedRoute>
+            <ArticlesPage />
+          </ProtectedRoute>
+        } />
+
 
       </Routes>
     </BrowserRouter>
