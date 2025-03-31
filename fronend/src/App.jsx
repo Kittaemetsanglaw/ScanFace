@@ -13,42 +13,39 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* เปลี่ยนหน้าแรกเป็น Home */}
+        {/* หน้าแรก */}
         <Route path="/" element={<HomeScreen />} />
 
-        {/* เพิ่มเส้นทางสำหรับ Login */}
+        {/* หน้า Login */}
         <Route path="/login" element={<LoginPage />} />
 
-        {/* เส้นทางที่ต้องล็อกอินก่อนเข้า */}
+        {/* Role-based protected routes */}
         <Route path="/courses" element={
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
             <Dashboard />
           </ProtectedRoute>
         } />
 
         <Route path="/attendance" element={
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={['student', 'teacher', 'admin']}>
             <AttendanceList />
           </ProtectedRoute>
         } />
 
         <Route path="/studentslist" element={
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={['student', 'teacher', 'admin']}>
             <StudentsList />
           </ProtectedRoute>
         } />
 
         <Route path="/articlespage" element={
-          <ProtectedRoute>
+          <ProtectedRoute allowedRoles={['admin']}>
             <ArticlesPage />
           </ProtectedRoute>
         } />
-
-
       </Routes>
     </BrowserRouter>
   );
 };
-
 
 export default App;

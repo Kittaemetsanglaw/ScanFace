@@ -14,8 +14,11 @@ const CourseDetails = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    navigate('/');
+    localStorage.removeItem('role');
+    navigate('/login');
   };
+
+  
 
   return (
     <div className="min-h-screen bg-white">
