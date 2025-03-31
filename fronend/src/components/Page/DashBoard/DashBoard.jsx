@@ -31,7 +31,6 @@ const Dashboard = () => {
     student.attendances.every(attendance => attendance.status !== "present")
   ).length;
 
-  
 
   return (
     <div className="flex">

@@ -7,10 +7,10 @@ import CourseDetails from "./components/Page/CourseDetails";
 import ProtectedRoute from "./components/Page/ProtectedRoute"
 import AttendanceList from './components/Page/AttendanceList';
 import StudentsList from "./components/Page/StudentsList"
-import ArticlesPage from './components/Page/ArticlesPage/ArticlesPage';
+import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
 
 const App = () => {
-  return (
+  return (           ไอเเอลเอ๋ออออออออออออออออออออออออออ  บ้าาาาาาาาาาาาาาาาาป่าวววววววววววว เเอลเอ๋ออออออออ
     <BrowserRouter>
       <Routes>
         {/* หน้าแรก */}
@@ -38,9 +38,10 @@ const App = () => {
           </ProtectedRoute>
         } />
 
-        <Route path="/articlespage" element={
+
+        <Route path="/admindashboard" element={
           <ProtectedRoute allowedRoles={['admin']}>
-            <ArticlesPage />
+            <AdminDashboard />
           </ProtectedRoute>
         } />
       </Routes>

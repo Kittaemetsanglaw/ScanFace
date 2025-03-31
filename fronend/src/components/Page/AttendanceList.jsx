@@ -9,9 +9,10 @@ const AttendanceList = () => {
   ]);
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    navigate('/');
+    localStorage.removeItem('user'); // ลบข้อมูลผู้ใช้
+    navigate('/login'); // เปลี่ยนเส้นทางไปที่หน้า Login
   };
+  
 
   return (
     <div className="min-h-screen bg-white text-black">

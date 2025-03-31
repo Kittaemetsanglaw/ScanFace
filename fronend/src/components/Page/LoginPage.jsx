@@ -18,13 +18,13 @@ const LoginPage = () => {
       // Redirect ตาม role
       switch (role) {
         case 'student':
-          navigate('/attendance');
+          navigate('/');
           break;
         case 'teacher':
-          navigate('/courses');
+          navigate('/');
           break;
         case 'admin':
-          navigate('/articlespage');
+          navigate('/');
           break;
         default:
           navigate('/');
