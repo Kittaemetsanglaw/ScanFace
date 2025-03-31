@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../Layout/Navbar/Navbar";
-import Topbar from "../../Layout/TopBar/Topbar";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
   const [isConnected, setIsConnected] = useState(true);
   const apiUrl = "https://your-api-endpoint.com/dashborad";
-
+  const navigate = useNavigate();
+  
   const fetchStudents = async () => {
     try {
       const response = await fetch(apiUrl);
@@ -23,6 +23,12 @@ const Dashboard = () => {
     fetchStudents();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+    navigate('/login');
+  };
+
   const checkedInCount = students.filter(student =>
     student.attendances.some(attendance => attendance.status === "present")
   ).length;
@@ -31,6 +37,41 @@ const Dashboard = () => {
     student.attendances.every(attendance => attendance.status !== "present")
   ).length;
 
+  // Navbar Component
+  const Navbar = () => {
+    return (
+      <div className="bg-white h-100 p-4 text-zinc-800 w-59">
+        <div className="flex items-center space-x-2 mb-10">
+          <span className="icon">💻</span>
+          <span className="text-xl font-bold">CPE-495</span>
+        </div>
+        <ul className="space-y-6">
+          <li><a href="#dashboard" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">📊</span><i className="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+          <li><a href="#notification" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">🔔 </span><i className="fas fa-notification-alt"></i><span>Notification</span></a></li>
+          <li><a href="#log" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">📄</span><i className="fas fa-calendar-alt"></i><span>Log</span></a></li>
+          <li><a href="#profile" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">👤</span><i className="fas fa-user"></i><span>Profile</span></a></li>
+          <li><a href="#settings" className="flex items-center space-x-2 hover:text-gray-400"><span className="icon">⚙️</span><i className="fas fa-cog"></i><span>Settings</span></a></li>
+        </ul>
+      </div>
+    );
+  };
+
+  // Topbar Component
+  const Topbar = () => {
+    return (
+      <div className="bg-white text-black p-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold">Dashboard</h1>
+        <div className="flex items-center space-x-4">
+          <button 
+            className="bg-white px-4 py-2 rounded-md font-medium"
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="flex">
