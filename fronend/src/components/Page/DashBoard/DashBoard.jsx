@@ -5,7 +5,7 @@ import Topbar from "../../Layout/TopBar/Topbar";
 const Dashboard = () => {
   const [students, setStudents] = useState([]);
   const [isConnected, setIsConnected] = useState(true);
-  const apiUrl = "http://localhost:5000/api/students";
+  const apiUrl = "https://your-api-endpoint.com/dashborad";
 
   const fetchStudents = async () => {
     try {

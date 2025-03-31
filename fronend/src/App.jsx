@@ -10,7 +10,7 @@ import StudentsList from "./components/Page/StudentsList"
 import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
 
 const App = () => {
-  return (           ไอเเอลเอ๋ออออออออออออออออออออออออออ  บ้าาาาาาาาาาาาาาาาาป่าวววววววววววว เเอลเอ๋ออออออออ
+  return (           
     <BrowserRouter>
       <Routes>
         {/* หน้าแรก */}
