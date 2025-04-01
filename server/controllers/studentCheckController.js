@@ -3,65 +3,58 @@ const prisma = new PrismaClient();
 
 async function createStudentCheck(req, res) {
     try {
-        const { Student_ID, Course_ID, Check_Date, Check_Time } = req.body;
+        const { Course_ID, Student_ID, Check_Date, Check_Time } = req.body;
 
-        // 🔹 ดึงข้อมูลวิชาจากฐานข้อมูล
+        // ดึงข้อมูลหลักสูตรเพื่อนำ Start_Time และ End_Time มาคำนวณ
         const course = await prisma.course_Detail.findUnique({
-            where: { Course_ID },
-            select: {
-                Start_Time: true,
-                End_Time: true
-            }
+            where: {
+                Course_ID: Course_ID,
+            },
         });
 
         if (!course) {
             return res.status(404).json({ error: "Course not found" });
         }
 
-        const { Start_Time, End_Time } = course;
+        const startTime = course.Start_Time; // "09:00:00"
+        const endTime = course.End_Time; // "12:00:00"
 
-        // 🔹 แปลงเวลาจาก String → Date Object
-        const checkTime = new Date(`${Check_Date}T${Check_Time}`);
-        const startTimeObj = new Date(`${Check_Date}T${Start_Time}`);
-        const endTimeObj = new Date(`${Check_Date}T${End_Time}`);
+        // แปลง Check_Time เป็น Date object เพื่อเปรียบเทียบ
+        const checkTimeDate = new Date(`1970-01-01T${Check_Time}Z`); // ใช้ 1970-01-01 เป็นวันที่จำลอง
 
-        // 🔹 คำนวณเวลา "สายเกิน 15 นาที"
-        const lateTimeObj = new Date(startTimeObj.getTime() + 15 * 60000);
+        // แปลง startTime และ endTime เป็น Date object
+        const startTimeDate = new Date(`1970-01-01T${startTime}Z`);
+        const endTimeDate = new Date(`1970-01-01T${endTime}Z`);
 
-        // 🔹 กำหนดสถานะการมาของนักเรียน
-        let status = "Absent"; // ขาดเรียน
-        if (checkTime <= startTimeObj) {
-            status = "Present"; // มาตรงเวลา
-        } else if (checkTime > startTimeObj && checkTime <= lateTimeObj) {
-            status = "Late"; // มาสาย (แต่ยังไม่เกิน 15 นาที)
-        } else if (checkTime > lateTimeObj && checkTime <= endTimeObj) {
-            status = "Very Late"; // มาสายเกิน 15 นาที
+        // คำนวณความแตกต่างของเวลา
+        const timeDiff = checkTimeDate - startTimeDate; // หน่วยเป็น milliseconds
+        const minutesDiff = timeDiff / (1000 * 60); // แปลงเป็นนาที
+
+        let checkStatus = "Present"; // ค่าเริ่มต้น
+
+        if (minutesDiff > 15 && minutesDiff <= 30) {
+            checkStatus = "Late";
+        } else if (minutesDiff > 30) {
+            checkStatus = "Very Late";
         }
 
-        // 🔹 บันทึกการเช็คชื่อของนักเรียนลงใน `Student_Check`
-        const check = await prisma.student_Check.create({
+        // บันทึกข้อมูล Student_Check พร้อม Check_Status ที่คำนวณแล้ว
+        const studentCheck = await prisma.student_Check.create({
             data: {
-                Student_ID,
                 Course_ID,
-                Check_Date: new Date(Check_Date),
+                Student_ID,
+                Check_Date,
                 Check_Time,
-                Check_Status: status
-            }
+                Check_Status: checkStatus, // ใช้ Check_Status ที่คำนวณ
+            },
         });
 
-        res.json({
-            Student_ID,
-            Course_ID,
-            Check_Date: Check_Date,
-            Check_Time,
-            Check_Status: status
-        });
-        console.log(check); 
-
+        res.json(studentCheck);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
+
 
 async function getAllStudentChecks(req, res) {
     try {

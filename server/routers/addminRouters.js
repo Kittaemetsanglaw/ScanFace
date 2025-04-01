@@ -1,12 +1,17 @@
-// classroomRoutes.js
 const express = require("express");
 const router = express.Router();
+const adminController = require("../controllers/addminController");
 
+// อาจารย์
+router.post("/teachers", adminController.addTeacher);
+router.delete("/teachers/:Teach_ID", adminController.deleteTeacher);
 
-// Create Classroom
-router.post("/classroom", classroomController.createClassRoom);
+// วิชา
+router.post("/courses", adminController.addCourse);
+router.delete("/courses/:Course_ID", adminController.deleteCourse);
 
-// Get All Classrooms
-router.get("/classroom", classroomController.getAllClassRooms);
+// นักศึกษา
+router.post("/students", adminController.addStudent);
+router.delete("/students/:Student_ID", adminController.deleteStudent);
 
 module.exports = router;

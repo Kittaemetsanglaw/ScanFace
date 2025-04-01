@@ -27,7 +27,7 @@ model Course_Detail {
 }
 
 model Student {
-  Student_ID       Int     @id  // เอา @default(autoincrement()) ออก
+  Student_ID       Int     @id
   Student_Name     String
   Student_Email    String
   Student_Username String
@@ -43,15 +43,16 @@ model ClassRoom {
   Check_Status String
   Class_Date  DateTime
   Class_Time  DateTime
+  Section     String   // เพิ่ม field section
   course      Course_Detail @relation(fields: [Course_ID], references: [Course_ID])
   student     Student       @relation(fields: [Student_ID], references: [Student_ID])
 }
 
 model Student_Check {
   Check_no    Int      @id @default(autoincrement())
-  Course_ID   String
+  Course_ID   String 
   Check_Date  DateTime
-  Check_Time  String  @default("00:00:00") // ✅ ใส่ default value
+  Check_Time  String  @default("00:00:00")
   Student_ID  Int
   Check_Status String
   course      Course_Detail @relation(fields: [Course_ID], references: [Course_ID])

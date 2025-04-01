@@ -30,13 +30,15 @@ CREATE TABLE `Course_Detail` (
     `Course_ID` VARCHAR(191) NOT NULL,
     `Course_Name` VARCHAR(191) NOT NULL,
     `Teach_ID` INTEGER NOT NULL,
+    `Start_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00',
+    `End_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00',
 
     PRIMARY KEY (`Course_ID`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Student` (
-    `Student_ID` INTEGER NOT NULL AUTO_INCREMENT,
+    `Student_ID` INTEGER NOT NULL,
     `Student_Name` VARCHAR(191) NOT NULL,
     `Student_Email` VARCHAR(191) NOT NULL,
     `Student_Username` VARCHAR(191) NOT NULL,
@@ -53,6 +55,7 @@ CREATE TABLE `ClassRoom` (
     `Check_Status` VARCHAR(191) NOT NULL,
     `Class_Date` DATETIME(3) NOT NULL,
     `Class_Time` DATETIME(3) NOT NULL,
+    `Section` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`Class_no`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -62,6 +65,7 @@ CREATE TABLE `Student_Check` (
     `Check_no` INTEGER NOT NULL AUTO_INCREMENT,
     `Course_ID` VARCHAR(191) NOT NULL,
     `Check_Date` DATETIME(3) NOT NULL,
+    `Check_Time` VARCHAR(191) NOT NULL DEFAULT '00:00:00',
     `Student_ID` INTEGER NOT NULL,
     `Check_Status` VARCHAR(191) NOT NULL,
 
