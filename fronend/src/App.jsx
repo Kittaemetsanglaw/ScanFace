@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Page/DashBoard/DashBoard';
 import HomeScreen from "./components/Page/HomeScreen";
 import LoginPage from "./components/Page/LoginPage";
-import CourseDetails from "./components/Page/CourseDetails";
+import CourseDetails from "./components/Page/InstructorPage/CourseDetails";
 import ProtectedRoute from "./components/Page/ProtectedRoute"
-import AttendanceList from './components/Page/AttendanceList';
-import StudentsList from "./components/Page/StudentsList"
+import AttendanceList from './components/Page/StudentsPage/AttendanceList';
+import StudentsList from "./components/Page/StudentsPage/StudentsList"
 import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
+import AttendanceTracker from './components/Page/InstructorPage/AttendanceTracker';
 
 const App = () => {
   return (           
@@ -23,6 +24,18 @@ const App = () => {
         <Route path="/courses" element={
           <ProtectedRoute allowedRoles={['teacher', 'admin']}>
             <Dashboard />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/coursesdetail" element={
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+            <CourseDetails />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/coursestracker" element={
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+            <AttendanceTracker />
           </ProtectedRoute>
         } />
 

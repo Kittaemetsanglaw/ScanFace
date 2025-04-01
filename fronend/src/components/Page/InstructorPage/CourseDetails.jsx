@@ -65,7 +65,7 @@ const CourseDetails = () => {
                   <td className="border p-2">
                     <button 
                       className="bg-green-600 text-white px-3 py-1 rounded"
-                      onClick={() => navigate('/attendance')}
+                      onClick={() => navigate('/coursestracker')}
                     >
                       เช็คชื่อ
                     </button>
