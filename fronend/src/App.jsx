@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Page/DashBoard/DashBoard';
 import HomeScreen from "./components/Page/HomeScreen";
 import LoginPage from "./components/Page/LoginPage";
-import CourseDetails from "./components/Page/CourseDetails";
+import CourseDetails from "./components/Page/TeacherPage/CourseDetails";
 import ProtectedRoute from "./components/Page/ProtectedRoute"
-import AttendanceList from './components/Page/AttendanceList';
-import StudentsList from "./components/Page/StudentsList"
+import AttendanceList from './components/Page/StudentPage/AttendanceList';
+import StudentsList from "./components/Page/StudentPage/StudentsList"
 import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
 
 const App = () => {
@@ -44,6 +44,13 @@ const App = () => {
             <AdminDashboard />
           </ProtectedRoute>
         } />
+
+        <Route path="/couresdetails" element={
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+            <CourseDetails />
+          </ProtectedRoute>
+        } />
+        
       </Routes>
     </BrowserRouter>
   );

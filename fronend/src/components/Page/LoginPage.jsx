@@ -75,11 +75,6 @@ const LoginPage = () => {
             LOGIN
           </button>
         </form>
-
-        <div className="mt-6 text-center">
-          <span className="text-gray-400">Forgot </span>
-          <a href="#" className="text-blue-600">Password?</a>
-        </div>
       </div>
     </div>
   );
