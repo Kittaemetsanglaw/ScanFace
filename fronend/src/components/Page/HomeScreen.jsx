@@ -12,14 +12,14 @@ const HomePage = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold mb-6 text-black">Service</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Student Card */}
           <div className="flex flex-col">
             <div className="bg-white border-2 border-blue-500 rounded-lg p-6 mb-2 flex items-center justify-center">
-              <img 
-                src="/images/student-icon.png" 
-                alt="Student" 
+              <img
+                src="/images/student-icon.png"
+                alt="Student"
                 className="w-32 h-32"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -27,8 +27,8 @@ const HomePage = () => {
                 }}
               />
             </div>
-            <Link 
-              to="/attendance" 
+            <Link
+              to="/attendance"
               className="bg-blue-600 text-white py-3 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors"
             >
               Students
@@ -38,9 +38,9 @@ const HomePage = () => {
           {/* Instructor Card */}
           <div className="flex flex-col">
             <div className="bg-white border-2 border-orange-500 rounded-lg p-6 mb-2 flex items-center justify-center">
-              <img 
-                src="/images/instructor-icon.png" 
-                alt="Instructor" 
+              <img
+                src="/images/instructor-icon.png"
+                alt="Instructor"
                 className="w-32 h-32"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -48,8 +48,8 @@ const HomePage = () => {
                 }}
               />
             </div>
-            <Link 
-              to="/courses" 
+            <Link
+              to="/Instructor"
               className="bg-orange-500 text-white py-3 px-4 rounded-lg text-center hover:bg-orange-600 transition-colors"
             >
               Instructor
@@ -59,9 +59,9 @@ const HomePage = () => {
           {/* Admin Card */}
           <div className="flex flex-col">
             <div className="bg-white border-2 border-orange-500 rounded-lg p-6 mb-2 flex items-center justify-center">
-              <img 
-                src="/images/admin-icon.png" 
-                alt="Admin" 
+              <img
+                src="/images/admin-icon.png"
+                alt="Admin"
                 className="w-32 h-32"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -69,8 +69,8 @@ const HomePage = () => {
                 }}
               />
             </div>
-            <Link 
-              to="/admindashboard" 
+            <Link
+              to="/admindashboard"
               className="bg-orange-500 text-white py-3 px-4 rounded-lg text-center hover:bg-orange-600 transition-colors"
             >
               Admin
