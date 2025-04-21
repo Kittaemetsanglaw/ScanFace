@@ -9,6 +9,8 @@ import AttendanceList from './components/Page/AttendanceList';
 import StudentsList from "./components/Page/StudentsList"
 import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
 
+import config from '../config/config'; // หรือปรับ path ให้ตรงกับโครงสร้างโปรเจกต์ของคุณ
+
 const App = () => {
   return (           
     <BrowserRouter>

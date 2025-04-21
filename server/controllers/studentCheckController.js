@@ -48,6 +48,7 @@ async function createStudentCheck(req, res) {
                 Check_Status: checkStatus, // ใช้ Check_Status ที่คำนวณ
             },
         });
+        console.log(studentCheck);
 
         res.json(studentCheck);
     } catch (error) {

@@ -19,8 +19,8 @@ model Course_Detail {
   Course_ID   String  @id
   Course_Name String
   Teach_ID    Int
-  Start_Time  String  @default("00:00:00")  // ✅ ใส่ default value
-  End_Time    String  @default("00:00:00")  // ✅ ใส่ default value
+  Start_Time  String  @default("00:00:00")
+  End_Time    String  @default("00:00:00") 
   teacher     Teacher @relation(fields: [Teach_ID], references: [Teach_ID])
   classrooms  ClassRoom[]
   studentChecks Student_Check[]
