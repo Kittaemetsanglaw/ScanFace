@@ -14,7 +14,7 @@ const AttendanceList = () => {
             setLoading(true);
             setError(null);
             try {
-                const url = 'http://localhost:5000/api/classrooms'; // ใช้ absolute URL
+                const url = 'https://a443-49-237-33-240.ngrok-free.app/api/classrooms'; // ใช้ absolute URL
                 console.log('Fetching data from:', url);
                 const classRoomsResponse = await axios.get(url);
                 if (Array.isArray(classRoomsResponse.data)) {

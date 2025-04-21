@@ -8,11 +8,11 @@ import ProtectedRoute from "./components/Page/ProtectedRoute"
 import AttendanceList from './components/Page/AttendanceList';
 import StudentsList from "./components/Page/StudentsList"
 import AdminDashboard from './components/Page/AdminPage/AdminDashboard';
+import InstructorList from './components/Page/InstructorList';
 
-import config from '../config/config'; // หรือปรับ path ให้ตรงกับโครงสร้างโปรเจกต์ของคุณ
 
 const App = () => {
-  return (           
+  return (
     <BrowserRouter>
       <Routes>
         {/* หน้าแรก */}
@@ -25,6 +25,18 @@ const App = () => {
         <Route path="/courses" element={
           <ProtectedRoute allowedRoles={['teacher', 'admin']}>
             <Dashboard />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/Instructor" element={
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+            <CourseDetails />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/InstructorList" element={
+          <ProtectedRoute allowedRoles={['teacher', 'admin']}>
+            <InstructorList />
           </ProtectedRoute>
         } />
 

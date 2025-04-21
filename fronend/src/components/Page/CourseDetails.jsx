@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CourseDetails = () => {
   const navigate = useNavigate();
-  
+
   const courseData = {
     date: '25/02/2568',
     teacher: 'อาจารย์สุรชัย ทองแก้ว',
@@ -18,13 +18,13 @@ const CourseDetails = () => {
     navigate('/login');
   };
 
-  
+
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-black">
       <header className="bg-[#131B62] p-4 flex justify-between items-center">
         <div></div>
-        <button 
+        <button
           className="bg-white px-4 py-2 rounded-md font-medium"
           onClick={handleLogout}
         >
@@ -34,7 +34,7 @@ const CourseDetails = () => {
 
       <div className="p-6">
         <h2 className="text-lg mb-4">รายละเอียดการเช็คชื่อเข้าเรียน : {courseData.date}</h2>
-        
+
         <div className="flex items-center mb-6">
           <div className="w-16 h-16 bg-[#080E2D] rounded-full mr-4 flex items-center justify-center">
             <div className="w-6 h-6 bg-white rounded-full relative items-center">
@@ -63,23 +63,23 @@ const CourseDetails = () => {
                   <td className="border p-2">{course.code}</td>
                   <td className="border p-2">{course.students}</td>
                   <td className="border p-2">
-                    <button 
+                    <button
                       className="bg-green-600 text-white px-3 py-1 rounded"
-                      onClick={() => navigate('/attendance')}
+                      onClick={() => navigate('/InstructorList')}
                     >
                       เช็คชื่อ
                     </button>
                   </td>
                   <td className="border p-2">
                     <button className="bg-blue-600 text-white px-3 py-1 rounded"
-                    onClick={() => navigate('/attendance')}
+                    onClick={() => navigate('/InstructorList')}
                     >
                       ดูประวัติ
                     </button>
                   </td>
                   <td className="border p-2">
                     <button className="bg-orange-500 text-white px-3 py-1 rounded"
-                    onClick={() => navigate('/attendance')}
+                    onClick={() => navigate('/InstructorList')}
                     >
                       แก้ไข
                     </button>

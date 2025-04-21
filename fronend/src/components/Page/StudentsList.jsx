@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const AttendancePage = () => {
   const navigate = useNavigate();
   const [attendanceData, setAttendanceData] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState("640510001");
+  const [selectedStudent, setSelectedStudent] = useState("65040153");
 
   useEffect(() => {
-    fetch(`https://api.example.com/attendance?studentId=${selectedStudent}`)
+    fetch(`https://a443-49-237-33-240.ngrok-free.app/api/students/65040153/courses`)
       .then(res => res.json())
       .then(data => setAttendanceData(data))
       .catch(err => console.error("Error fetching:", err));
@@ -121,7 +121,7 @@ const AttendancePage = () => {
         {/* Done Button */}
         <div className="text-right mt-4">
           <button className="bg-green-500 text-white px-4 py-1 rounded "
-           onClick={() => navigate('/attendance')}
+            onClick={() => navigate('/attendance')}
           >
             เสร็จสิ้น
           </button>
